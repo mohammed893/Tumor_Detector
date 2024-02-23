@@ -184,7 +184,7 @@ def get_output_path():
     
   if request.method == 'POST':
    firebase_path = str(request.form['path'])
-   path_here = f"/static/{firebase_path}"
+   path_here = f"static/{firebase_path}"
    storage.download(firebase_path, path_here)
    
    print("Downloaded")
