@@ -134,11 +134,11 @@ def make_prediction (img_path , model, last_conv_layer_name = "Top_Conv_Layer" ,
 app = Flask(__name__)
 #Loading The DeepLearning Model 
 #path for the testing photos
-test_path = "API_image_TF_MODEL-main\static"
+test_path = "Tumor_Detector/static"
 #The Home Route
 @app.route("/", methods=['GET', 'POST'])
 def main():
-  return render_template("index.html")
+  return render_template("Tumor_Detector/templates/index.html")
 #The submit Root (The route used to predict)
 @app.route("/submit", methods = ['GET', 'POST'])
 def get_output():
@@ -150,7 +150,7 @@ def get_output():
   'messagingSenderId': "1007975514765",
   'appId': "1:1007975514765:web:fb154ed9aa3e701ad4d8c4",
   'measurementId': "G-WJ0L8LBVR0",
-  "serviceAccount" : "serviceAccount.json" , 
+  "serviceAccount" : "Tumor_Detector/serviceAccount.json" , 
   "databaseURL" : "https://test-97ca6-default-rtdb.firebaseio.com/"
 }
   firebase = pyrebase.initialize_app(config=firebaseConfig)
@@ -158,8 +158,8 @@ def get_output():
     
   if request.method == 'POST':
    img = request.files['my_image']
-   img_path = "static/" + img.filename	
-   img.save("static/" + img.filename	) 
+   img_path = "Tumor_Detector/static/" + img.filename	
+   img.save("Tumor_Detector/static/" + img.filename	) 
    prediction_1 = f'{img.filename}-Prediction'
    send_to_Firebase(img_path , img.filename , storage)
    return {"prediction" : prediction_1 , 
@@ -177,7 +177,7 @@ def get_output_path():
   'messagingSenderId': "1007975514765",
   'appId': "1:1007975514765:web:fb154ed9aa3e701ad4d8c4",
   'measurementId': "G-WJ0L8LBVR0",
-  "serviceAccount" : "serviceAccount.json" , 
+  "serviceAccount" : "Tumor_Detector/serviceAccount.json" , 
   "databaseURL" : "https://test-97ca6-default-rtdb.firebaseio.com/"
 }
   firebase = pyrebase.initialize_app(config=firebaseConfig)
@@ -185,7 +185,7 @@ def get_output_path():
     
   if request.method == 'POST':
    firebase_path = str(request.form['path'])
-   path_here = f"static/{firebase_path}"
+   path_here = f"Tumor_Detector/static/{firebase_path}"
    storage.download(firebase_path, path_here)
    
    print("Downloaded")
