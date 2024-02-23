@@ -4,19 +4,10 @@ from flask import Flask, render_template, request ,jsonify , json
 import tensorflow as tf
 import matplotlib as mpl
 app = Flask(__name__)
-model = pickle.load(open('The_Medical_Model1.pkl' , 'rb'))
-
 
 @app.route('/')
 def home():
     return "Welcome Dude that's a dump API"
-@app.route("/predict" , methods = ["GET"])
-def predict():
-                    })
-@app.route("/submit", methods = ['GET', 'POST'])
-def get_output():
-	return render_template("index.html", prediction = p, img_path = img_path)
-
 if __name__ == "__main__":
     app.run(debug=True)
 
