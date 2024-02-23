@@ -2,4 +2,5 @@ Flask==3.0.0
 matplotlib==3.8.0
 numpy==1.26.1
 Pyrebase4==4.7.1
+gunicorn==21.2.0
 tensorflow-cpu==2.15.0
