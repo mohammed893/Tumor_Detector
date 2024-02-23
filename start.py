@@ -1,11 +1,9 @@
+import numpy as np
+import pyrebase
 from flask import Flask, render_template, request ,jsonify , json
-app = Flask(__name__)
+import tensorflow as tf
+import matplotlib as mpl
 
-@app.route('/')
-def home():
-    return "Welcome Dude that's a dump API"
-if __name__ == "__main__":
-    app.run(debug=True)
 
 
 # ##--------------------------------Connection with FireBase-------------------------------------###
@@ -132,14 +130,14 @@ if __name__ == "__main__":
 
 
 ###------------------------------- Core API app -------------------------------###
-# app = Flask(__name__)
+app = Flask(__name__)
 #Loading The DeepLearning Model 
 #path for the testing photos
 test_path = "/static"
 #The Home Route
-# @app.route("/", methods=['GET', 'POST'])
-# def main():
-#   return render_template("index.html")
+@app.route("/", methods=['GET', 'POST'])
+def main():
+  return render_template("index.html")
 #The submit Root (The route used to predict)
 # @app.route("/submit", methods = ['GET', 'POST'])
 # def get_output():
@@ -203,7 +201,5 @@ test_path = "/static"
   
            
  
-# if __name__ =='__main__':
-# 	#app.debug = True
-# 	app.run(debug = True)
+
 ###------------------------------- Core API app -------------------------------###
