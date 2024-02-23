@@ -1,8 +1,4 @@
-import numpy as np
-import pyrebase
 from flask import Flask, render_template, request ,jsonify , json
-import tensorflow as tf
-import matplotlib as mpl
 app = Flask(__name__)
 
 @app.route('/')
