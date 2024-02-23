@@ -8,13 +8,13 @@ import matplotlib as mpl
 
 # ##--------------------------------Connection with FireBase-------------------------------------###
 
-# IMG_SIZE = 224
-# BATCH_SIZE = 32
+IMG_SIZE = 224
+BATCH_SIZE = 32
 
-# def send_to_Firebase(img , imgname , storage):
-#      storage.child(f'/images/{imgname}').put(img)
-# def download_from_Firebas(path_Firebase , path_Here , storage):
-#      storage.download(path_Firebase, path_Here)
+def send_to_Firebase(img , imgname , storage):
+     storage.child(f'/images/{imgname}').put(img)
+def download_from_Firebas(path_Firebase , path_Here , storage):
+     storage.download(path_Firebase, path_Here)
 # ##--------------------------------Connection with FireBase-------------------------------------###
 
 
@@ -139,65 +139,65 @@ test_path = "/static"
 def main():
   return render_template("index.html")
 #The submit Root (The route used to predict)
-# @app.route("/submit", methods = ['GET', 'POST'])
-# def get_output():
-#   firebaseConfig = {
-#   'apiKey': "AIzaSyCFYjB2SIgwiabbVUPFfi8ZSq4ovTDWUHY",
-#   'authDomain': "test-97ca6.firebaseapp.com",
-#   'projectId': "test-97ca6",
-#   'storageBucket': "test-97ca6.appspot.com",
-#   'messagingSenderId': "1007975514765",
-#   'appId': "1:1007975514765:web:fb154ed9aa3e701ad4d8c4",
-#   'measurementId': "G-WJ0L8LBVR0",
-#   "serviceAccount" : "Tumor_Detector/serviceAccount.json" , 
-#   "databaseURL" : "https://test-97ca6-default-rtdb.firebaseio.com/"
-# }
-#   firebase = pyrebase.initialize_app(config=firebaseConfig)
-#   storage = firebase.storage()
+@app.route("/submit", methods = ['GET', 'POST'])
+def get_output():
+  firebaseConfig = {
+  'apiKey': "AIzaSyCFYjB2SIgwiabbVUPFfi8ZSq4ovTDWUHY",
+  'authDomain': "test-97ca6.firebaseapp.com",
+  'projectId': "test-97ca6",
+  'storageBucket': "test-97ca6.appspot.com",
+  'messagingSenderId': "1007975514765",
+  'appId': "1:1007975514765:web:fb154ed9aa3e701ad4d8c4",
+  'measurementId': "G-WJ0L8LBVR0",
+  "serviceAccount" : "Tumor_Detector/serviceAccount.json" , 
+  "databaseURL" : "https://test-97ca6-default-rtdb.firebaseio.com/"
+}
+  firebase = pyrebase.initialize_app(config=firebaseConfig)
+  storage = firebase.storage()
     
-#   if request.method == 'POST':
-#    img = request.files['my_image']
-#    img_path = "Tumor_Detector/static/" + img.filename	
-#    img.save("Tumor_Detector/static/" + img.filename	) 
-#    prediction_1 = f'{img.filename}-Prediction'
-#    send_to_Firebase(img_path , img.filename , storage)
-#    return {"prediction" : prediction_1 , 
-#            "FireBasePath" : f'/images/{img.filename}',
-#            }
+  if request.method == 'POST':
+   img = request.files['my_image']
+   img_path = "Tumor_Detector/static/" + img.filename	
+   img.save("Tumor_Detector/static/" + img.filename	) 
+   prediction_1 = f'{img.filename}-Prediction'
+   send_to_Firebase(img_path , img.filename , storage)
+   return {"prediction" : prediction_1 , 
+           "FireBasePath" : f'/images/{img.filename}',
+           }
    
-# @app.route("/submit_path", methods = ['POST'])
-# def get_output_path():
-#   firebaseConfig = {
-#   'apiKey': "AIzaSyCFYjB2SIgwiabbVUPFfi8ZSq4ovTDWUHY",
-#   'authDomain': "test-97ca6.firebaseapp.com",
-#   'databaseURL': "https://test-97ca6-default-rtdb.firebaseio.com",
-#   'projectId': "test-97ca6",
-#   'storageBucket': "test-97ca6.appspot.com",
-#   'messagingSenderId': "1007975514765",
-#   'appId': "1:1007975514765:web:fb154ed9aa3e701ad4d8c4",
-#   'measurementId': "G-WJ0L8LBVR0",
-#   "serviceAccount" : "Tumor_Detector/serviceAccount.json" , 
-#   "databaseURL" : "https://test-97ca6-default-rtdb.firebaseio.com/"
-# }
-#   firebase = pyrebase.initialize_app(config=firebaseConfig)
-#   storage = firebase.storage()
+@app.route("/submit_path", methods = ['POST'])
+def get_output_path():
+  firebaseConfig = {
+  'apiKey': "AIzaSyCFYjB2SIgwiabbVUPFfi8ZSq4ovTDWUHY",
+  'authDomain': "test-97ca6.firebaseapp.com",
+  'databaseURL': "https://test-97ca6-default-rtdb.firebaseio.com",
+  'projectId': "test-97ca6",
+  'storageBucket': "test-97ca6.appspot.com",
+  'messagingSenderId': "1007975514765",
+  'appId': "1:1007975514765:web:fb154ed9aa3e701ad4d8c4",
+  'measurementId': "G-WJ0L8LBVR0",
+  "serviceAccount" : "Tumor_Detector/serviceAccount.json" , 
+  "databaseURL" : "https://test-97ca6-default-rtdb.firebaseio.com/"
+}
+  firebase = pyrebase.initialize_app(config=firebaseConfig)
+  storage = firebase.storage()
     
-#   if request.method == 'POST':
-#    firebase_path = str(request.form['path'])
-#    path_here = f"Tumor_Detector/static/{firebase_path}"
-#    storage.download(firebase_path, path_here)
+  if request.method == 'POST':
+   firebase_path = str(request.form['path'])
+   path_here = f"Tumor_Detector/static/{firebase_path}"
+   storage.download(firebase_path, path_here)
    
-#    print("Downloaded")
-#    prediction_1 = f'{path_here}-Prediction'
-#    send_to_Firebase(path_here , 'Segmentation.jpeg' , storage=storage)
-#    data = {"prediction" : prediction_1 , 
-#            "FireBasePath" : f'/images/Segmentation.jpeg'}
-#    response = app.response_class(
-#      response = json.dumps(data) , 
-#      status=200 , 
-#      mimetype='application/json'
-#    )
-#    return response
+   print("Downloaded")
+   prediction_1 = f'{path_here}-Prediction'
+   send_to_Firebase(path_here , 'Segmentation.jpeg' , storage=storage)
+   data = {"prediction" : prediction_1 , 
+           "FireBasePath" : f'/images/Segmentation.jpeg'}
+   response = app.response_class(
+     response = json.dumps(data) , 
+     status=200 , 
+     mimetype='application/json'
+   )
+   return response
   
            
  
