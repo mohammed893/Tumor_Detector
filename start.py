@@ -3,7 +3,6 @@ import pyrebase
 from flask import Flask, render_template, request ,jsonify , json
 import tensorflow as tf
 import matplotlib as mpl
-import tensorflow as tf
 
 
 
@@ -134,7 +133,7 @@ import tensorflow as tf
 app = Flask(__name__)
 #Loading The DeepLearning Model 
 #path for the testing photos
-test_path = "Tumor_Detector/static"
+test_path = "/static"
 #The Home Route
 @app.route("/", methods=['GET', 'POST'])
 def main():
