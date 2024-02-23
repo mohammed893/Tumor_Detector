@@ -138,7 +138,7 @@ test_path = "Tumor_Detector/static"
 #The Home Route
 @app.route("/", methods=['GET', 'POST'])
 def main():
-  return render_template("Tumor_Detector/templates/index.html")
+  return render_template("index.html")
 #The submit Root (The route used to predict)
 @app.route("/submit", methods = ['GET', 'POST'])
 def get_output():
