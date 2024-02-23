@@ -157,8 +157,8 @@ def get_output():
     
   if request.method == 'POST':
    img = request.files['my_image']
-   img_path = "/static/" + img.filename	
-   img.save("/static/" + img.filename	) 
+   img_path = "static/" + img.filename	
+   img.save("static/" + img.filename	) 
    prediction_1 = f'{img.filename}-Prediction'
    send_to_Firebase(img_path , img.filename , storage)
    return {"prediction" : prediction_1 , 
