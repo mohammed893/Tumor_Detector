@@ -149,7 +149,7 @@ def get_output():
   'messagingSenderId': "1007975514765",
   'appId': "1:1007975514765:web:fb154ed9aa3e701ad4d8c4",
   'measurementId': "G-WJ0L8LBVR0",
-  "serviceAccount" : "Tumor_Detector/serviceAccount.json" , 
+  "serviceAccount" : "serviceAccount.json" , 
   "databaseURL" : "https://test-97ca6-default-rtdb.firebaseio.com/"
 }
   firebase = pyrebase.initialize_app(config=firebaseConfig)
@@ -157,8 +157,8 @@ def get_output():
     
   if request.method == 'POST':
    img = request.files['my_image']
-   img_path = "Tumor_Detector/static/" + img.filename	
-   img.save("Tumor_Detector/static/" + img.filename	) 
+   img_path = "/static/" + img.filename	
+   img.save("/static/" + img.filename	) 
    prediction_1 = f'{img.filename}-Prediction'
    send_to_Firebase(img_path , img.filename , storage)
    return {"prediction" : prediction_1 , 
@@ -176,7 +176,7 @@ def get_output_path():
   'messagingSenderId': "1007975514765",
   'appId': "1:1007975514765:web:fb154ed9aa3e701ad4d8c4",
   'measurementId': "G-WJ0L8LBVR0",
-  "serviceAccount" : "Tumor_Detector/serviceAccount.json" , 
+  "serviceAccount" : "serviceAccount.json" , 
   "databaseURL" : "https://test-97ca6-default-rtdb.firebaseio.com/"
 }
   firebase = pyrebase.initialize_app(config=firebaseConfig)
