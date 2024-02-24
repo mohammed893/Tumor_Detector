@@ -201,7 +201,6 @@ def get_output_path():
    image_name = image_name.split(".")
    image_name = image_name[0]+"-"+prediction_1+"."+image_name[1]
    send_to_Firebase("static\cam.jpg" , image_name , storage=storage)
-   delete_image(path_here)
    data = {"prediction" : prediction_1 , 
            "FireBasePath" : f'/segmentation/{image_name}'}
    response = app.response_class(
@@ -209,6 +208,8 @@ def get_output_path():
      status=200 , 
      mimetype='application/json'
    )
+   delete_image(path_here)
+
    return response
   
            
