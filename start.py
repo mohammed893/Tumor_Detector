@@ -22,6 +22,19 @@ def delete_image(image_path):
         print(f"Image {image_path} deleted successfully")
     except OSError as e:
         print(f"Error deleting image: {e}")
+def delete_files_in_folder(folder_path = "static/images"):
+    try:
+        # List all files in the specified folder
+        files = os.listdir(folder_path)
+        
+        # Iterate through each file and delete it
+        for file_name in files:
+            file_path = os.path.join(folder_path, file_name)
+            if os.path.isfile(file_path):
+                os.remove(file_path)
+                print(f"File {file_path} deleted successfully")
+    except OSError as e:
+        print(f"Error deleting files: {e}")
 
 # ##--------------------------------Connection with FireBase-------------------------------------###
 
@@ -191,8 +204,10 @@ def get_output_path():
   storage = firebase.storage()
     
   if request.method == 'POST':
+   
    firebase_path = str(request.form['path'])
    path_here = f"static/{firebase_path}"
+   delete_files_in_folder()
    storage.download(firebase_path, path_here)
    
    print("Downloaded")
@@ -208,7 +223,6 @@ def get_output_path():
      status=200 , 
      mimetype='application/json'
    )
-   delete_image(path_here)
 
    return response
   
