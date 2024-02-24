@@ -3,6 +3,7 @@ import pyrebase
 from flask import Flask, render_template, request ,jsonify , json
 import tensorflow as tf
 import matplotlib as mpl
+import os
 
 
 
@@ -15,6 +16,13 @@ def send_to_Firebase(img , imgname , storage ):
      storage.child(f'/segmentation/{imgname}').put(img)
 def download_from_Firebas(path_Firebase , path_Here , storage):
      storage.download(path_Firebase, path_Here)
+def delete_image(image_path):
+    try:
+        os.remove(image_path)
+        print(f"Image {image_path} deleted successfully")
+    except OSError as e:
+        print(f"Error deleting image: {e}")
+
 # ##--------------------------------Connection with FireBase-------------------------------------###
 
 
@@ -193,6 +201,7 @@ def get_output_path():
    image_name = image_name.split(".")
    image_name = image_name[0]+"-"+prediction_1+"."+image_name[1]
    send_to_Firebase("static\cam.jpg" , image_name , storage=storage)
+   delete_image(path_here)
    data = {"prediction" : prediction_1 , 
            "FireBasePath" : f'/segmentation/{image_name}'}
    response = app.response_class(
