@@ -11,8 +11,8 @@ import matplotlib as mpl
 IMG_SIZE = 224
 BATCH_SIZE = 32
 
-def send_to_Firebase(img , imgname , storage):
-     storage.child(f'/images/{imgname}').put(img)
+def send_to_Firebase(img , imgname , storage ):
+     storage.child(f'/segmentation/{imgname}').put(img)
 def download_from_Firebas(path_Firebase , path_Here , storage):
      storage.download(path_Firebase, path_Here)
 # ##--------------------------------Connection with FireBase-------------------------------------###
@@ -189,9 +189,12 @@ def get_output_path():
    
    print("Downloaded")
    prediction_1 = make_prediction(img_path=path_here , model = model)[1]
-   send_to_Firebase("static\cam.jpg" , 'Segmentation.jpeg' , storage=storage)
+   image_name = firebase_path[7:]
+   image_name = image_name.split(".")
+   image_name = image_name[0]+"-"+prediction_1+"."+image_name[1]
+   send_to_Firebase("static\cam.jpg" , image_name , storage=storage)
    data = {"prediction" : prediction_1 , 
-           "FireBasePath" : f'/images/Segmentation.jpeg'}
+           "FireBasePath" : f'/segmentation/image_name'}
    response = app.response_class(
      response = json.dumps(data) , 
      status=200 , 
