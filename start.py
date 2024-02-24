@@ -35,6 +35,28 @@ def delete_files_in_folder(folder_path = "static/images"):
                 print(f"File {file_path} deleted successfully")
     except OSError as e:
         print(f"Error deleting files: {e}")
+def wait_for_image_upload(image_path, timeout=60, poll_interval=1):
+    """
+    Wait for an image to be uploaded to the specified path.
+
+    Parameters:
+    - image_path: The path to the image file.
+    - timeout: The maximum time to wait (in seconds).
+    - poll_interval: The interval (in seconds) between checks for the image.
+
+    Returns:
+    - True if the image is uploaded within the timeout period, False otherwise.
+    """
+    start_time = time.time()
+
+    while time.time() - start_time < timeout:
+        if os.path.exists(image_path):
+            print("Image uploaded successfully!")
+            return True
+        time.sleep(poll_interval)
+
+    print("Timeout reached. Image upload failed.")
+    return False
 
 # ##--------------------------------Connection with FireBase-------------------------------------###
 
@@ -209,8 +231,7 @@ def get_output_path():
    path_here = f"static/{firebase_path}"
    delete_files_in_folder()
    storage.download(firebase_path, path_here)
-   
-   print("Downloaded")
+   wait_for_image_upload(path_here)
    prediction_1 = make_prediction(img_path=path_here , model = model)[1]
    image_name = firebase_path[7:]
    image_name = image_name.split(".")
