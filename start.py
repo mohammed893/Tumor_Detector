@@ -190,7 +190,7 @@ def get_output_path():
    
    print("Downloaded")
    prediction_1 = make_prediction(img_path=path_here , model = model)[1]
-   send_to_Firebase(path_here , 'Segmentation.jpeg' , storage=storage)
+   send_to_Firebase("static\cam.jpg" , 'Segmentation.jpeg' , storage=storage)
    data = {"prediction" : prediction_1 , 
            "FireBasePath" : f'/images/Segmentation.jpeg'}
    response = app.response_class(
