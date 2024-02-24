@@ -35,7 +35,7 @@ def delete_files_in_folder(folder_path = "static/images"):
                 print(f"File {file_path} deleted successfully")
     except OSError as e:
         print(f"Error deleting files: {e}")
-def wait_for_image_upload(image_path, timeout=60, poll_interval=1):
+def wait_for_image_upload(image_path, timeout=50, poll_interval=1):
     """
     Wait for an image to be uploaded to the specified path.
 
