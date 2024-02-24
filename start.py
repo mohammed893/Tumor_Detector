@@ -143,15 +143,15 @@ def main():
 @app.route("/submit", methods = ['GET', 'POST'])
 def get_output():
   firebaseConfig = {
-  'apiKey': "AIzaSyCFYjB2SIgwiabbVUPFfi8ZSq4ovTDWUHY",
-  'authDomain': "test-97ca6.firebaseapp.com",
-  'projectId': "test-97ca6",
-  'storageBucket': "test-97ca6.appspot.com",
-  'messagingSenderId': "1007975514765",
-  'appId': "1:1007975514765:web:fb154ed9aa3e701ad4d8c4",
-  'measurementId': "G-WJ0L8LBVR0",
-  "serviceAccount" : "serviceAccount.json" , 
-  "databaseURL" : "https://test-97ca6-default-rtdb.firebaseio.com/"
+   'apiKey': "AIzaSyAcU3Yk5mYYooLCQJP2060ssxZNxddN9aA",
+  'authDomain': "brain-tumor-detector1685.firebaseapp.com",
+  'projectId': "brain-tumor-detector1685",
+  'storageBucket': "brain-tumor-detector1685.appspot.com",
+  'messagingSenderId': "716972217713",
+  'appId': "1:716972217713:web:93aebdec5b1fce719792d0",
+  'measurementId': "G-FBE9T5C3Y2",
+  "serviceAccount": "serviceAccount.json",
+  "databaseURL": "https://brain-tumor-detector1685-default-rtdb.firebaseio.com"
 }
   firebase = pyrebase.initialize_app(config=firebaseConfig)
   storage = firebase.storage()
@@ -169,16 +169,15 @@ def get_output():
 @app.route("/submit_path", methods = ['POST'])
 def get_output_path():
   firebaseConfig = {
-  'apiKey': "AIzaSyCFYjB2SIgwiabbVUPFfi8ZSq4ovTDWUHY",
-  'authDomain': "test-97ca6.firebaseapp.com",
-  'databaseURL': "https://test-97ca6-default-rtdb.firebaseio.com",
-  'projectId': "test-97ca6",
-  'storageBucket': "test-97ca6.appspot.com",
-  'messagingSenderId': "1007975514765",
-  'appId': "1:1007975514765:web:fb154ed9aa3e701ad4d8c4",
-  'measurementId': "G-WJ0L8LBVR0",
-  "serviceAccount" : "serviceAccount.json" , 
-  "databaseURL" : "https://test-97ca6-default-rtdb.firebaseio.com/"
+  'apiKey': "AIzaSyAcU3Yk5mYYooLCQJP2060ssxZNxddN9aA",
+  'authDomain': "brain-tumor-detector1685.firebaseapp.com",
+  'projectId': "brain-tumor-detector1685",
+  'storageBucket': "brain-tumor-detector1685.appspot.com",
+  'messagingSenderId': "716972217713",
+  'appId': "1:716972217713:web:93aebdec5b1fce719792d0",
+  'measurementId': "G-FBE9T5C3Y2",
+  "serviceAccount": "serviceAccount.json",
+  "databaseURL": "https://brain-tumor-detector1685-default-rtdb.firebaseio.com"
 }
   firebase = pyrebase.initialize_app(config=firebaseConfig)
   storage = firebase.storage()
