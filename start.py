@@ -3,8 +3,8 @@ import pyrebase
 from flask import Flask, render_template, request ,jsonify , json
 import tensorflow as tf
 import matplotlib as mpl
-import os
-import time
+# import os
+# import time
 
 
 # ##--------------------------------Connection with FireBase-------------------------------------###
@@ -16,25 +16,25 @@ def send_to_Firebase(img , imgname , storage ):
      storage.child(f'/segmentation/{imgname}').put(img)
 def download_from_Firebas(path_Firebase , path_Here , storage):
      storage.download(path_Firebase, path_Here)
-def delete_image(image_path):
-    try:
-        os.remove(image_path)
-        print(f"Image {image_path} deleted successfully")
-    except OSError as e:
-        print(f"Error deleting image: {e}")
-def delete_files_in_folder(folder_path = "static/images"):
-    try:
-        # List all files in the specified folder
-        files = os.listdir(folder_path)
+# def delete_image(image_path):
+#     try:
+#         os.remove(image_path)
+#         print(f"Image {image_path} deleted successfully")
+#     except OSError as e:
+#         print(f"Error deleting image: {e}")
+# def delete_files_in_folder(folder_path = "static/images"):
+#     try:
+#         # List all files in the specified folder
+#         files = os.listdir(folder_path)
         
-        # Iterate through each file and delete it
-        for file_name in files:
-            file_path = os.path.join(folder_path, file_name)
-            if os.path.isfile(file_path):
-                os.remove(file_path)
-                print(f"File {file_path} deleted successfully")
-    except OSError as e:
-        print(f"Error deleting files: {e}")
+#         # Iterate through each file and delete it
+#         for file_name in files:
+#             file_path = os.path.join(folder_path, file_name)
+#             if os.path.isfile(file_path):
+#                 os.remove(file_path)
+#                 print(f"File {file_path} deleted successfully")
+#     except OSError as e:
+#         print(f"Error deleting files: {e}")
 def wait_for_image_upload(image_path, timeout=50, poll_interval=1):
     """
     Wait for an image to be uploaded to the specified path.
@@ -229,9 +229,9 @@ def get_output_path():
    
    firebase_path = str(request.form['path'])
    path_here = f"static/{firebase_path}"
-   delete_files_in_folder()
+   # delete_files_in_folder()
    storage.download(firebase_path, path_here)
-   wait_for_image_upload(path_here)
+   # wait_for_image_upload(path_here)
    prediction_1 = make_prediction(img_path=path_here , model = model)[1]
    image_name = firebase_path[7:]
    image_name = image_name.split(".")
